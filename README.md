@@ -80,3 +80,34 @@
 ☑️ 3항 연산자는 쓰지 않았는가.
 
 ☑️ 함수는 최대한 작게 만들어 한가지 기능만 하도록 했는가.
+
+## 📖 학습 내용
+
+### 테스트 코드
+
+- jest는 파일명에 `.test`가 들어가거나 `__tests__` 디렉토리를 테스트 한다.
+- 테스트에서 자주 사용되는 mock 함수의 경우 `__mocks__` 디렉토리를 이용해 저장하면 된다.
+- `mockReturnValueOnce`를 이용해 특정 함수의 리턴 값을 제어할 수 있다.
+  - `MissionUtils.Random.pickNumberInRange = jest.fn();` 를 통해 랜덤 숫자 생성 함수를 가짜 함수로 만든다.
+  - `mockReturnValueOnce(props)`를 통해 아까 설정한 가짜 함수의 리턴 값을 미리 설정할 수 있다.
+  - `mockReturnValueOnce(props)`로 넣은 `props`는 큐처럼 FIFO이다.
+
+
+**예시**
+```jsx
+const mockFn = jest.fn();
+
+// 값들을 순서대로 넣기 (큐에 push)
+mockFn
+  .mockReturnValueOnce(1)  // 첫 번째로 들어감
+  .mockReturnValueOnce(2)  // 두 번째로 들어감
+  .mockReturnValueOnce(3)  // 세 번째로 들어감
+  .mockReturnValueOnce(4); // 네 번째로 들어감
+
+// 호출할 때마다 순서대로 나옴 (큐에서 pop)
+console.log(mockFn()); // 1 (첫 번째 나옴)
+console.log(mockFn()); // 2 (두 번째 나옴)
+console.log(mockFn()); // 3 (세 번째 나옴)
+console.log(mockFn()); // 4 (네 번째 나옴)
+console.log(mockFn()); // undefined (큐가 비었음)
+```
