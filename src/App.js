@@ -9,9 +9,10 @@ class App {
       validateNameInput(input1);
       const input2 = await Console.readLineAsync(INPUT_QUESTION_2);
       validateNumberInput(input2);
-    } catch (error) {}
-    Console.print(error.message);
-    throw error;
+    } catch (error) {
+      Console.print(error.message);
+      throw error;
+    }
   }
 }
 
