@@ -27,14 +27,14 @@ describe('통합 테스트', () => {
 
   test('입력 문자열 출력 테스트', async () => {
     const inputs = ['san', '1'];
-    const QUESTIONS = [INPUT_QUESTION_1, INPUT_QUESTION_2];
+    const questions = [INPUT_QUESTION_1, INPUT_QUESTION_2];
 
     mockQuestions(inputs);
 
     const app = new App();
     await app.run();
 
-    QUESTIONS.forEach((questionString) => {
+    questions.forEach((questionString) => {
       expect(MissionUtils.Console.readLineAsync).toHaveBeenCalledWith(
         expect.stringContaining(questionString)
       );
@@ -55,6 +55,7 @@ describe('통합 테스트', () => {
     mockQuestions([input1, input2]);
 
     const app = new App();
+
     await expect(app.run()).rejects.toThrow('[ERROR]'); // rejects로 수정
   });
 });
