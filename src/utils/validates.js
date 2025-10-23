@@ -34,7 +34,13 @@ export const validateNameInput = (input) => {
 };
 
 export const validateNumberInput = (input) => {
-  let flag = true;
+  let flag = !isNaN(input);
+
+  if (input === '' || input.trim() !== input) flag = false;
+  if (flag) {
+    const n = Number(input);
+    if (n < 0) flag = false;
+  }
 
   if (!flag) {
     throw new Error(ERROR.WRONG_NUM_FORMAT);

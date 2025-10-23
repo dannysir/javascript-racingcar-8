@@ -40,13 +40,20 @@ describe('통합 테스트', () => {
     });
   });
 
-  test.each(['dannysir', 'seo, san, dannysir', '', '     ,san', '!!!,san', '@@@@@'])(
-    '[예외 테스트] 참가자 테스트 - 입력 : %s',
-    async (input) => {
-      mockQuestions(input);
+  test.each([
+    ['dannysir', '1'],
+    ['seo, san, dannysir', '1'],
+    ['', '1'],
+    ['     ,san', '1'],
+    ['san,san', '1'],
+    ['san', ''],
+    ['san', 'dannysir'],
+    ['san', '-1'],
+    ['san', ' '],
+  ])('[예외 테스트] 참가자 테스트 - 입력1 : %s 입력2 : %s', async (input1, input2) => {
+    mockQuestions([input1, input2]);
 
-      const app = new App();
-      await expect(app.run()).reject.toThrow('[ERROR]');
-    }
-  );
+    const app = new App();
+    await expect(app.run()).rejects.toThrow('[ERROR]'); // rejects로 수정
+  });
 });
