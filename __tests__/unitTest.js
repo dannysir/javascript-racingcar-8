@@ -77,12 +77,15 @@ describe('Model', () => {
     test('getWinner - 우승자 발표', () => {
       const carNames = ['pobi', 'crong', 'honux'];
       const N = 2;
+      const GO = 4;
+      const STOP = 3;
 
       game.addPlayers(carNames);
+      mockRandoms([GO, GO, STOP, STOP, GO, STOP]);
       game.play(N);
       const winner = game.getWinner();
 
-      expect(winner).toBe(carNames[1]);
+      expect(winner).toEqual([carNames[1]]);
     });
   });
 
@@ -101,7 +104,7 @@ describe('Model', () => {
 
       result.forEach((value) => {
         player.move();
-        expects(player.value).toBe(value);
+        expect(player.value).toBe(value);
       });
     });
   });
