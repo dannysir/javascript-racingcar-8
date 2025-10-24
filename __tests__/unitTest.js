@@ -47,25 +47,25 @@ describe('Model', () => {
     });
 
     test('addPlayers - 플레이어 추가', () => {
-      const carNames = ['pobi', 'crong', 'honux'];
+      const players = ['pobi', 'crong', 'honux'];
 
-      game.addPlayers(carNames);
+      game.addPlayers(players);
 
-      carNames.forEach((name, index) => {
-        expect(game.cars[index]).toBeInstanceOf(Player);
-        expect(game.cars[index].name).toBe(name);
+      players.forEach((name, index) => {
+        expect(game.getPlayers()[index]).toBeInstanceOf(Player);
+        expect(game.getPlayers()[index].getName()).toBe(name);
       });
     });
 
     test('play - 게임 진행', () => {
-      const carNames = ['pobi', 'crong', 'honux'];
+      const players = ['pobi', 'crong', 'honux'];
       const N = 2;
       const GO = 4;
       const STOP = 3;
       const logs = ['pobi : -', 'crong : -', 'honux : ', 'pobi : -', 'crong : --', 'honux : '];
       const logSpy = getLogSpy();
 
-      game.addPlayers(carNames);
+      game.addPlayers(players);
       mockRandoms([GO, GO, STOP, STOP, GO, STOP]);
       game.play(N);
 
@@ -75,17 +75,17 @@ describe('Model', () => {
     });
 
     test('getWinner - 우승자 발표', () => {
-      const carNames = ['pobi', 'crong', 'honux'];
+      const players = ['pobi', 'crong', 'honux'];
       const N = 2;
       const GO = 4;
       const STOP = 3;
 
-      game.addPlayers(carNames);
+      game.addPlayers(players);
       mockRandoms([GO, GO, STOP, STOP, GO, STOP]);
       game.play(N);
       const winner = game.getWinner();
 
-      expect(winner).toEqual([carNames[1]]);
+      expect(winner).toEqual([players[1]]);
     });
   });
 
@@ -104,7 +104,7 @@ describe('Model', () => {
 
       result.forEach((value) => {
         player.move();
-        expect(player.value).toBe(value);
+        expect(player.getValue()).toBe(value);
       });
     });
   });
