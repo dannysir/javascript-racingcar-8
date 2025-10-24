@@ -12,3 +12,5 @@ export const ERROR = {
   WRONG_NAME_FORMAT: E_HEADER + '잘못된 이름 형식입니다.',
   WRONG_NUM_FORMAT: E_HEADER + '숫자만 입력해주세요.',
 };
+
+export const PROGRESS_BAR = '-';

@@ -15,10 +15,11 @@ class App {
       const n = Number(input2);
 
       const game = new Game();
+
       game.addPlayers(cars);
       game.play(n);
 
-      Console.print(OUTPUT_WINNER + game.getWinner());
+      game.result();
     } catch (error) {
       Console.print(error.message);
       throw error;
