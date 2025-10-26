@@ -2,7 +2,7 @@ export const INPUT_QUESTION_1 = '경주할 자동차 이름을 입력하세요.(
 
 export const INPUT_QUESTION_2 = '시도할 횟수는 몇 회인가요?\n';
 
-export const OUTPUT_PROCESS_RESULT = '실행 결과\n';
+export const OUTPUT_PROCESS_RESULT = '\n실행 결과';
 
 export const OUTPUT_WINNER = '최종 우승자 : ';
 

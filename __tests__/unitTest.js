@@ -49,7 +49,7 @@ describe('Model', () => {
     test('addPlayers - 플레이어 추가', () => {
       const players = ['pobi', 'crong', 'honux'];
 
-      game.addPlayers(players);
+      game.addPlayers(players.join(','));
 
       players.forEach((name, index) => {
         expect(game.getPlayers()[index]).toBeInstanceOf(Player);
@@ -65,7 +65,7 @@ describe('Model', () => {
       const logs = ['pobi : -', 'crong : -', 'honux : ', 'pobi : -', 'crong : --', 'honux : '];
       const logSpy = getLogSpy();
 
-      game.addPlayers(players);
+      game.addPlayers(players.join(','));
       mockRandoms([GO, GO, STOP, STOP, GO, STOP]);
       game.play(N);
 
@@ -80,7 +80,7 @@ describe('Model', () => {
       const GO = 4;
       const STOP = 3;
 
-      game.addPlayers(players);
+      game.addPlayers(players.join(','));
       mockRandoms([GO, GO, STOP, STOP, GO, STOP]);
       game.play(N);
       const winner = game.getWinner();
