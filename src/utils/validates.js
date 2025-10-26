@@ -1,49 +1,37 @@
 import { ERROR } from '../constants.js';
 
 const validateEachName = (name, duplicate) => {
-  if (name.trim() !== name) {
-    return false;
-  }
+  const hasWhiteSpace = name.trim() !== name;
+  const invalidateLength = name.length <= 0 || name.length > 5;
+  const duplicated = duplicate.has(name);
 
-  if (name.length <= 0 || name.length > 5) {
-    return false;
-  }
-
-  return !duplicate.has(name);
+  return !hasWhiteSpace && !invalidateLength && !duplicated;
 };
 
 export const validateNameInput = (input) => {
-  let flag = true;
-
   const nameArray = input.split(',');
   const duplicate = new Set();
 
   for (const name of nameArray) {
     if (!validateEachName(name, duplicate)) {
-      flag = false;
-      break;
+      throw new Error(ERROR.WRONG_NAME_FORMAT);
     }
     duplicate.add(name);
   }
 
-  if (!flag) {
-    throw new Error(ERROR.WRONG_NAME_FORMAT);
-  }
-
-  return flag;
+  return true;
 };
 
 export const validateNumberInput = (input) => {
-  let flag = !isNaN(input);
+  const isEmpty = input === '';
+  const hasWhiteSpace = input.trim() !== input;
+  const notNumber = isNaN(input);
+  const isNegative = !notNumber && Number(input) < 0;
 
-  if (input === '' || input.trim() !== input) flag = false;
+  const flag = isEmpty || hasWhiteSpace || notNumber || isNegative;
+
   if (flag) {
-    const n = Number(input);
-    if (n < 0) flag = false;
-  }
-
-  if (!flag) {
     throw new Error(ERROR.WRONG_NUM_FORMAT);
   }
-  return flag;
+  return !flag;
 };

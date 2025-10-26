@@ -46,17 +46,6 @@ describe('Model', () => {
       game = new Game();
     });
 
-    test('addPlayers - 플레이어 추가', () => {
-      const players = ['pobi', 'crong', 'honux'];
-
-      game.addPlayers(players.join(','));
-
-      players.forEach((name, index) => {
-        expect(game.getPlayers()[index]).toBeInstanceOf(Player);
-        expect(game.getPlayers()[index].getName()).toBe(name);
-      });
-    });
-
     test('play - 게임 진행', () => {
       const players = ['pobi', 'crong', 'honux'];
       const N = 2;
@@ -85,7 +74,7 @@ describe('Model', () => {
       game.play(N);
       const winner = game.getWinner();
 
-      expect(winner).toEqual([players[1]]);
+      expect(winner).toEqual([players[1]].join(', '));
     });
   });
 

@@ -4,10 +4,8 @@ import { Console } from '@woowacourse/mission-utils';
 
 export class Game {
   #players;
-  #max;
   constructor() {
     this.#players = [];
-    this.#max = null;
   }
 
   addPlayers(input) {
@@ -18,36 +16,25 @@ export class Game {
   }
 
   play(n) {
-    for (let i = 0; i < +n; i++) {
+    for (let i = 0; i < n; i++) {
       this.#players.forEach((player) => {
         player.move();
-        this.#max = Math.max(this.#max, player.getValue());
       });
       this.#print();
     }
   }
 
   getWinner() {
-    const winner = [];
-    this.#players.forEach((player) => {
-      if (player.getValue() === this.#max) {
-        winner.push(player.getName());
-      }
-    });
+    const maxValue = Math.max(...this.#players.map((p) => p.getValue()));
 
-    return winner;
-  }
-
-  getPlayers() {
-    return this.#players;
+    const winners = this.#players.filter((p) => p.getValue() === maxValue).map((p) => p.getName());
+    return winners.join(', ');
   }
 
   #print() {
-    const result = [];
-
-    this.#players.forEach((players) => {
-      const value = players.getValue();
-      result.push(`${players.getName()} : ${PROGRESS_BAR.repeat(value)}`);
+    const result = this.#players.map((player) => {
+      const value = player.getValue();
+      return `${player.getName()} : ${PROGRESS_BAR.repeat(value)}`;
     });
 
     Console.print(result.join('\n') + '\n');

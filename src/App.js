@@ -21,10 +21,9 @@ class App {
       validateNumberInput(input2);
 
       Console.print(OUTPUT_PROCESS_RESULT);
-      game.play(input2);
+      game.play(+input2);
 
-      const winners = game.getWinner();
-      Console.print(OUTPUT_WINNER + winners.join(', '));
+      Console.print(OUTPUT_WINNER + game.getWinner());
     } catch (error) {
       Console.print(error.message);
       throw error;
