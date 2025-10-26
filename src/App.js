@@ -4,7 +4,7 @@ import {
   OUTPUT_PROCESS_RESULT,
   OUTPUT_WINNER,
 } from './constants.js';
-import { Console, Random } from '@woowacourse/mission-utils';
+import { Console } from '@woowacourse/mission-utils';
 import { validateNameInput, validateNumberInput } from './utils/validates.js';
 import { Game } from './model/game.js';
 

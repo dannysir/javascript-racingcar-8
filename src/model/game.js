@@ -1,5 +1,5 @@
 import { Player } from './player.js';
-import { PROGRESS_BAR } from '../constants.js';
+import { NAME_DELIMITER, OUTPUT_WINNER_DELIMITER, PROGRESS_BAR } from '../constants.js';
 import { Console } from '@woowacourse/mission-utils';
 
 export class Game {
@@ -9,7 +9,7 @@ export class Game {
   }
 
   addPlayers(input) {
-    const cars = input.split(',');
+    const cars = input.split(NAME_DELIMITER);
     cars.forEach((name) => {
       this.#players.push(new Player(name));
     });
@@ -28,7 +28,7 @@ export class Game {
     const maxValue = Math.max(...this.#players.map((p) => p.getValue()));
 
     const winners = this.#players.filter((p) => p.getValue() === maxValue).map((p) => p.getName());
-    return winners.join(', ');
+    return winners.join(OUTPUT_WINNER_DELIMITER);
   }
 
   #print() {

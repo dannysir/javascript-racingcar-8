@@ -14,3 +14,15 @@ export const ERROR = {
 };
 
 export const PROGRESS_BAR = '-';
+
+export const GO = 4;
+
+export const [RANDOM_RANGE_START, RANDOM_RANGE_END] = [0, 9];
+
+export const [NAME_RANGE_MIN, NAME_RANGE_MAX] = [0, 5];
+
+export const DEFAULT_VALUE = 0;
+
+export const NAME_DELIMITER = ',';
+
+export const OUTPUT_WINNER_DELIMITER = ', ';

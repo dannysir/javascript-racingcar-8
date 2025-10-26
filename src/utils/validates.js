@@ -1,15 +1,15 @@
-import { ERROR } from '../constants.js';
+import { ERROR, NAME_DELIMITER, NAME_RANGE_MAX, NAME_RANGE_MIN } from '../constants.js';
 
 const validateEachName = (name, duplicate) => {
   const hasWhiteSpace = name.trim() !== name;
-  const invalidateLength = name.length <= 0 || name.length > 5;
+  const invalidateLength = name.length <= NAME_RANGE_MIN || name.length > NAME_RANGE_MAX;
   const duplicated = duplicate.has(name);
 
   return !hasWhiteSpace && !invalidateLength && !duplicated;
 };
 
 export const validateNameInput = (input) => {
-  const nameArray = input.split(',');
+  const nameArray = input.split(NAME_DELIMITER);
   const duplicate = new Set();
 
   for (const name of nameArray) {
